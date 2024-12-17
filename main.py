@@ -10,8 +10,17 @@ model_path = "Chessmen/causal_lm"
 causal_lm  = pipeline(
     "text-generation",
     model="huggingface-course/codeparrot-ds", 
-    device=device
+    device=device,
+
+    
 )
+input_text = txt = """
+# create some data
+x = np.random.randn(100)
+y = np.random.randn(100)
+
+# create dataframe from x and y
+"""
 if input_text:
-	st.write(causal_lm(input_text))
+	st.write(causal_lm(input_text, num_return_sequences=1,max_new_tokens=100,return_full_text=True)[0]["generated_text"])
     

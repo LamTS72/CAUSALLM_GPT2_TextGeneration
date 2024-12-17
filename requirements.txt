@@ -1,0 +1,9 @@
+transformers
+datasets 
+evaluate 
+numpy 
+torch 
+seqeval 
+huggingface_hub
+gradio
+streamlit

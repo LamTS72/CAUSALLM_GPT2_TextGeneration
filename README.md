@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This is finetuning model of BERT to handle NER task from NLP.
+This is pre-trained model of GPT2 to handle Causal LM task from NLP.
 
 ## Description
 

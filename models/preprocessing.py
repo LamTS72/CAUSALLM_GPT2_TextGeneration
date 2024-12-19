@@ -34,7 +34,28 @@ class Preprocessing():
 
         print(self.tokenized_dataset)
         self.train_loader, self.val_loader = self.data_loader(batch_size)
-        
+        self.keytoken_ids = self.key_token_ids()
+    def key_token_ids(self):
+      keytoken_ids = []
+      for keyword in [
+          "plt",
+          "pd",
+          "sk",
+          "fit",
+          "predict",
+          " plt",
+          " pd",
+          " sk",
+          " fit",
+          " predict",
+          "testtest",
+      ]:
+          ids = self.process.tokenizer([keyword]).input_ids[0]
+          if len(ids) == 1:
+              keytoken_ids.append(ids[0])
+          else:
+              print(f"Keyword has not single token: {keyword}")
+          return keytoken_ids
 
     def tokenize_dataset(self, sample):
       tokenized_input = self.tokenizer(

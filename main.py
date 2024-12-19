@@ -1,6 +1,6 @@
 import streamlit as st
 from transformers import pipeline
-
+from torch.nn.utils import pad
 import torch
 st.title('Langchain Demo With Causal LM Of Text Generation')
 input_text=st.text_input("Input text")

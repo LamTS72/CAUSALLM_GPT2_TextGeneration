@@ -43,7 +43,7 @@ class Training():
         self.gradient_accumulation_steps = gradient_accumulation_steps
         self.eval_steps = eval_steps
         self.weight_decay = weight_decay
-        self.keytoken_ids = self.keytoken_ids()
+        self.keytoken_ids = self.process.key_token_ids()
         self.num_steps = self.epochs * len(self.process.train_loader)
         self.optimizer = torch.optim.AdamW(
             self.get_grouped_params(self.model),
@@ -138,27 +138,6 @@ class Training():
           perplexity = float("inf")
       return loss.item(), perplexity.item()
 
-    def keytoken_ids(self):
-        keytoken_ids = []
-        for keyword in [
-            "plt",
-            "pd",
-            "sk",
-            "fit",
-            "predict",
-            " plt",
-            " pd",
-            " sk",
-            " fit",
-            " predict",
-            "testtest",
-        ]:
-            ids = self.process.tokenizer([keyword]).input_ids[0]
-            if len(ids) == 1:
-                keytoken_ids.append(ids[0])
-            else:
-                print(f"Keyword has not single token: {keyword}")
-            return keytoken_ids
                 
     def fit(self, flag_step=False):
       completed_steps = 0
@@ -189,6 +168,9 @@ class Training():
         # Save and upload after each epoch
         final_commit = ((epoch+1) == self.epochs)
         self.save_and_upload((epoch+1), final_commit)
+
+
+
 
 
 if __name__ == '__main__':

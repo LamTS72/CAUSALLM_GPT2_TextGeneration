@@ -14,14 +14,14 @@ class Preprocessing():
                  ratio=ConfigModel.RATIO,
                  context_length=ConfigModel.CONTEXT_LENGTH,
                  dataset=None,
-                 flag_traning=True,
+                 flag_training=True,
                  local_processed=False):
       self.tokenizer = AutoTokenizer.from_pretrained(model_tokenizer)
       self.tokenizer.pad_token = self.tokenizer.eos_token
       self.context_length = context_length
       self.data_collator = DataCollatorForLanguageModeling(tokenizer=self.tokenizer,
                                                            mlm=False)
-      if flag_traning:
+      if flag_training:
         print("-"*50, "Information of Tokenizer", "-"*50)
         print(self.tokenizer)
 

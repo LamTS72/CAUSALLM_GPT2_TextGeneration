@@ -2,7 +2,7 @@ from transformers import AutoModelForCausalLM
 from preprocessing import Preprocessing
 class Predictor():
     def __init__(self):
-        self.process = Preprocessing(flag_traning=False)
+        self.process = Preprocessing(flag_training=False)
         self.model = self.load_model()
 
     def load_model(self):
